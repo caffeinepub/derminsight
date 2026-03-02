@@ -1,0 +1,233 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Font Faces ─────────────────────────────────────────────────── */
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("/assets/fonts/CabinetGrotesk-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Sora";
+  src: url("/assets/fonts/Sora-Variable.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Design Tokens ──────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Core palette: clinical white + cool slate + muted teal */
+    --background: 0.985 0.002 240;
+    --foreground: 0.22 0.018 250;
+
+    --card: 0.995 0 0;
+    --card-foreground: 0.22 0.018 250;
+
+    --popover: 0.995 0 0;
+    --popover-foreground: 0.22 0.018 250;
+
+    /* Primary: deep slate-navy */
+    --primary: 0.28 0.04 250;
+    --primary-foreground: 0.99 0 0;
+
+    /* Secondary: cool light gray */
+    --secondary: 0.96 0.005 240;
+    --secondary-foreground: 0.28 0.04 250;
+
+    /* Muted: pale slate */
+    --muted: 0.95 0.006 240;
+    --muted-foreground: 0.52 0.02 250;
+
+    /* Accent: muted teal — the clinical differentiation */
+    --accent: 0.88 0.035 200;
+    --accent-foreground: 0.22 0.04 220;
+
+    /* Teal brand */
+    --teal: 0.58 0.1 195;
+    --teal-light: 0.88 0.04 195;
+    --teal-dark: 0.38 0.08 200;
+
+    /* Rose/coral accent */
+    --rose: 0.62 0.18 15;
+    --rose-light: 0.93 0.04 15;
+    --rose-dark: 0.42 0.14 15;
+
+    /* Indigo/violet accent */
+    --indigo: 0.52 0.18 280;
+    --indigo-light: 0.92 0.04 280;
+    --indigo-dark: 0.35 0.14 280;
+
+    /* Warm gold accent */
+    --gold: 0.75 0.14 80;
+    --gold-light: 0.94 0.04 80;
+
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 0.90 0.008 240;
+    --input: 0.90 0.008 240;
+    --ring: 0.58 0.1 195;
+
+    --chart-1: 0.58 0.1 195;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+
+    --sidebar: 0.985 0.002 240;
+    --sidebar-foreground: 0.22 0.018 250;
+    --sidebar-primary: 0.28 0.04 250;
+    --sidebar-primary-foreground: 0.99 0 0;
+    --sidebar-accent: 0.88 0.035 200;
+    --sidebar-accent-foreground: 0.22 0.04 220;
+    --sidebar-border: 0.90 0.008 240;
+    --sidebar-ring: 0.58 0.1 195;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Cabinet Grotesk", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* ─── Utility Classes ─────────────────────────────────────────────── */
+@layer utilities {
+  .text-teal {
+    color: oklch(var(--teal));
+  }
+  .bg-teal {
+    background-color: oklch(var(--teal));
+  }
+  .bg-teal-light {
+    background-color: oklch(var(--teal-light));
+  }
+  .border-teal {
+    border-color: oklch(var(--teal));
+  }
+
+  /* Rose utilities */
+  .text-rose { color: oklch(var(--rose)); }
+  .bg-rose { background-color: oklch(var(--rose)); }
+  .bg-rose-light { background-color: oklch(var(--rose-light)); }
+  .border-rose { border-color: oklch(var(--rose)); }
+
+  /* Indigo utilities */
+  .text-indigo { color: oklch(var(--indigo)); }
+  .bg-indigo { background-color: oklch(var(--indigo)); }
+  .bg-indigo-light { background-color: oklch(var(--indigo-light)); }
+  .border-indigo { border-color: oklch(var(--indigo)); }
+
+  /* Gold utilities */
+  .text-gold { color: oklch(var(--gold)); }
+  .bg-gold { background-color: oklch(var(--gold)); }
+  .bg-gold-light { background-color: oklch(var(--gold-light)); }
+
+  /* Hover states */
+  .hover\:bg-teal-dark:hover { background-color: oklch(var(--teal-dark)); }
+  .hover\:bg-rose-dark:hover { background-color: oklch(var(--rose-dark)); }
+  .hover\:bg-indigo-dark:hover { background-color: oklch(var(--indigo-dark)); }
+
+  /* Multi-color hero gradient */
+  .gradient-hero {
+    background: linear-gradient(135deg, oklch(var(--teal-light) / 0.3) 0%, oklch(var(--indigo-light) / 0.2) 50%, oklch(var(--rose-light) / 0.15) 100%);
+  }
+
+  /* Premium card shadow */
+  .card-premium {
+    box-shadow: 0 4px 24px -4px oklch(var(--teal) / 0.15), 0 1px 2px oklch(0 0 0 / 0.05);
+  }
+
+  /* Subtle geometric grid background */
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(oklch(0.9 0.006 240 / 0.6) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.9 0.006 240 / 0.6) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Cell/molecular dot pattern */
+  .bg-dot-pattern {
+    background-image: radial-gradient(
+      oklch(0.85 0.01 200 / 0.6) 1.5px,
+      transparent 1.5px
+    );
+    background-size: 24px 24px;
+  }
+
+  .prose-clinical {
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+  }
+
+  .intake-card {
+    @apply bg-card border border-border rounded-xl shadow-sm;
+  }
+
+  .nav-link {
+    @apply text-sm font-medium text-muted-foreground transition-colors hover:text-foreground;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-link-active {
+    @apply text-foreground;
+  }
+
+  /* Progress bar fill animation */
+  .progress-fill {
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: oklch(var(--teal));
+  }
+
+  /* Clinical separator */
+  .section-divider {
+    @apply border-t border-border;
+  }
+
+  /* Disclaimer style */
+  .disclaimer-bar {
+    background: oklch(0.92 0.025 200 / 0.5);
+    border-left: 3px solid oklch(var(--teal));
+  }
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--muted-foreground) / 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--muted-foreground) / 0.5);
+}
+
+/* ─── Focus visible ring ────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid oklch(var(--teal));
+  outline-offset: 2px;
+}
